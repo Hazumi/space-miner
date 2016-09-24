@@ -1,0 +1,87 @@
+$primary-color: #333;
+$secondary-color: #f8f8f8;
+$secondary-color-accent: #eee;
+$secondary-color-accent-darker: darken($secondary-color-accent, 12%);
+$primary-font: 'Open Sans', sans-serif;
+$secondary-font: 'Hind Guntur', sans-serif;
+
+body {
+  font-size: 16px;
+  font-family: $primary-font;
+  color: $primary-color;
+}
+
+header {
+  background-color: $primary-color;
+  height: 1.5em;
+  ul {
+    margin: 0;
+    padding: 0;
+  } li {
+    background-color: $primary-color;
+    display:inline-block;
+    font-size: 1.5em;
+    padding: 0;
+    a {
+      color: #eee;
+      padding: 0 30px;
+    }
+  }
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: 1.4em;
+  text-align: center;
+
+}
+
+h2 {
+  margin: 8px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+p {
+  margin: 0;
+}
+
+.progress-title {
+  font-size: 1em;
+  font-family: $secondary-font;
+  letter-spacing: 2px;
+  text-indent: 10px;
+}
+
+.left {
+  background-color: $secondary-color;
+}
+
+.mid {
+  text-align: center;
+}
+
+.right {
+  background-color: $secondary-color;
+}
+
+.col-xs-3 {
+  padding: 0 1em 1em;
+  border: 2px $secondary-color-accent solid;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 5px 10px $secondary-color-accent;
+}
+
+.btn {
+  border: 2px $secondary-color-accent solid;
+  box-shadow: 0px 0px 10px $secondary-color-accent;
+  &:hover {
+    border: 2px $secondary-color-accent-darker solid;
+  }
+}

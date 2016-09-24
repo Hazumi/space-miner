@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="style/main.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Hind+Guntur|Open+Sans|Work+Sans|Yellowtail|Dancing+Script" rel="stylesheet">
+  <title>Space Miner</title>
+</head>
+<body>
+
+  <div class="container">
+    <header class="col-xs-12" style="border-radius: 10px 10px 0 0;"></header>
+
+    <!--- LEFT --->
+    <div class="left col-xs-3">
+      <h2>Mining Hauler</h2>
+      <p class="progress-title">Power</p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-primary" role="progressbar" id="powerProgress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+      </div>
+      <p class="progress-title">Hyperdrive</p>
+      <div class="progress text-right">
+        <div class="progress-bar progress-bar-info" role="progressbar" id="hyperdriveProgress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+      </div>
+
+      <div class="btn-group hidden" id="hyperdriveMenu">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p>Warp <span class="caret"></span></p>
+        </button>
+        <ul class="dropdown-menu">
+          <li id="hyperdriveGlulevis"><a href="#">Glulevis</a></li>
+          <li id="hyperdriveAshara"><a href="#">Ashara</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">???</a></li>
+        </ul>
+      </div>
+
+      <h2>Cargo</h2>
+      <span id="shipCargo">
+        <p>QUID: <span id="quid"></span></p>
+        <span id="carbonaceous"></span>
+        <span id="silicaceous"></span>
+        <span id="vesta"></span>
+        <span id="iridium"></span>
+      </span>
+    </div>
+
+    <!--- MID --->
+    <div class="mid col-xs-6">
+
+      <div id="glulevis">
+        <h1>Planet: Glulevis</h1>
+        <h3>Astroid Belt 1</h3>
+        <button class="btn btn-default" id="glulevisBelt1">Start Mining</button>
+        <h3>Astroid Belt 2</h3>
+        <button class="btn btn-default" id="glulevisBelt2">Start Mining</button>
+        <h3 class="hidden" id="glulevisDwarfPlanetHeader">Dwarf Planet</h3>
+        <button class="btn btn-default hidden" id="glulevisDwarfPlanet">Start Mining</button>
+      </div>
+
+      <div id="ashara" class="hidden">
+        <h2>Planet: Ashara</h2>
+        <h3>Trans-Asharian Objects</h3>
+        <button class="btn btn-default" id="asharaObjects">Start Mining</button>
+      </div>
+
+    </div>
+
+    <!--- RIGHT --->
+    <div class="right col-xs-3">
+      <h2>Orbital Station</h2>
+
+      <div id="buy-wrapper">
+        <h3 id="buy">Buy</h3>
+        <button id="miningLaserButton" class="btn btn-block btn-default">Mining Laser [2 QUID]</button>
+        <button id="hyperdrive" class="btn btn-default btn-block hidden">Hyperdrive [10 QUID]</button>
+        <button id="navigationSystem" class="btn btn-default btn-block hidden">Hyperdrive<br> Navigation System<br>[15 QUID]</button>
+      </div>
+
+      <div id="upgrade-wrapper">
+        <h3 id="upgrade" class="hidden">Upgrade</h3>
+        <button class="btn btn-default btn-block hidden" id="upgradeMaxPower">Max Power +5 [2 QUID]</button>
+        <button class="btn btn-default btn-block hidden" id="miningSpeed">Mining Speed Increase x1.1<br>[25 QUID]</button>
+      </div>
+
+      <div id="maintenance-wrapper">
+        <h3 id="maintenance" class="hidden">Maintenance</h3>
+        <button id="restorePower" class="btn btn-default btn-block hidden">Restore Power [2 QUID]</button>
+      </div>
+
+      <div id="sell-wrapper">
+        <h3 id="sell" class="hidden">Sell</h3>
+        <button class="btn btn-default btn-block hidden" id="sellCarbonaceous">Carbonaceous [25/1 QUID]</button>
+        <button class="btn btn-default btn-block hidden" id="sellSilicaceous">Silicaceous [1 QUID]</button>
+        <button class="btn btn-default btn-block hidden" id="sellVesta">Vesta [2 QUID]</button>
+        <button class="btn btn-default btn-block hidden" id="sellIridium">Iridium [3 QUID]</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/jquery-3.1.0.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>
