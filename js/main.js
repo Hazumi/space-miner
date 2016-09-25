@@ -69,6 +69,7 @@ $(document).ready(function() {
   var upgrade = $('#upgrade');
   var maintenance = $('#maintenance');
   var sell = $('#sell');
+
   function toggleShowHeader(header) {
     if ( header.siblings().is(':visible') ){
       header.removeClass('hidden');
@@ -123,13 +124,11 @@ $(document).ready(function() {
       $powerProgress.html(power + " / " + maxPower);
     }
     $powerProgress.css('width', (power * 100) / maxPower + "%");
-    $powerProgress.css('font-weight', 'bold');
     $powerProgress.attr('aria-valuenow', power);
     $powerProgress.attr('aria-valuemax', maxPower);
 
     $hyperdriveProgress.html(hyperdriveCurrent + "%");
     $hyperdriveProgress.css('width', hyperdriveCurrent + "%");
-    $hyperdriveProgress.css('font-weight', 'bold');
     $hyperdriveProgress.attr('aria-valuenow', hyperdriveCurrent);
 
     if (carbonaceous) {
