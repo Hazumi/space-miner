@@ -20,8 +20,8 @@
       <div class="progress">
         <div class="progress-bar progress-bar-primary" role="progressbar" id="powerProgress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
       </div>
-      <p class="progress-title">Hyperdrive</p>
-      <div class="progress text-right">
+      <p id="progress-title" class="progress-title hidden">Hyperdrive</p>
+      <div id="progress-bar" class="progress text-right hidden">
         <div class="progress-bar progress-bar-info" role="progressbar" id="hyperdriveProgress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
       </div>
 
@@ -49,13 +49,12 @@
 
 
     <div class="mid col-xs-6">
-
       <div id="glulevis">
-        <h1>Planet: Glulevis</h1>
-        <h3>Astroid Belt 1</h3>
-        <button class="btn btn-default" id="glulevisBelt1">Start Mining</button>
-        <h3>Astroid Belt 2</h3>
-        <button class="btn btn-default" id="glulevisBelt2">Start Mining</button>
+        <h2>Planet: Glulevis</h2>
+          <h3>Astroid Belt 1</h3>
+          <button class="btn btn-default" id="glulevisBelt1">Start Mining</button>
+          <h3>Astroid Belt 2</h3>
+          <button class="btn btn-default" id="glulevisBelt2">Start Mining</button>
         <h3 class="hidden" id="glulevisDwarfPlanetHeader">Dwarf Planet</h3>
         <button class="btn btn-default hidden" id="glulevisDwarfPlanet">Start Mining</button>
       </div>
@@ -65,7 +64,6 @@
         <h3>Trans-Asharian Objects</h3>
         <button class="btn btn-default" id="asharaObjects">Start Mining</button>
       </div>
-
     </div>
 
     <div class="right col-xs-3">
@@ -81,7 +79,7 @@
       <div id="upgrade-wrapper">
         <h3 id="upgrade" class="hidden">Upgrade</h3>
         <button class="btn btn-default btn-block hidden" id="upgradeMaxPower">Max Power +5 [2 QUID]</button>
-        <button class="btn btn-default btn-block hidden" id="miningSpeed">Mining Speed Increase x1.1<br>[25 QUID]</button>
+        <button class="btn btn-default btn-block " id="miningSpeed">Mining Speed x1.1<br>[25 QUID]</button>
       </div>
 
       <div id="maintenance-wrapper">

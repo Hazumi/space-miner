@@ -49,7 +49,7 @@ $(document).ready(function() {
       'vesta': 0,
       'iridium': 0
     },
-    'miningTechnique': 0,
+    'miningLaser': 0,
     'hyperdrive': 0,
     'hyperdriveCurrent': 100,
     'currentLocation': 'glulevis'
@@ -266,7 +266,7 @@ $(document).ready(function() {
 
   // MINING
   $glulevisBelt1.on('click', function() {
-     if (ship.miningTechnique && !mining) {
+     if (ship.miningLaser && !mining) {
       mining = true;
       miningGlulevisBelt1 = true;
       $(this).html("Stop Mining");
@@ -278,7 +278,7 @@ $(document).ready(function() {
       }
   });
   $glulevisBelt2.on('click', function() {
-     if (ship.miningTechnique && !mining) {
+     if (ship.miningLaser && !mining) {
       mining = true;
       miningGlulevisBelt2 = true;
       $(this).html("Stop Mining");
@@ -320,7 +320,7 @@ $(document).ready(function() {
     $miningLaserButton.on('click', function() {
       if (quid >= 2) {
         quid -= 2;
-        ship.miningTechnique = 1;
+        ship.miningLaser = 1;
         displayStats();
         $upgradeMaxPower.removeClass('hidden');
         $hyperdrive.removeClass('hidden');
@@ -343,11 +343,15 @@ $(document).ready(function() {
   })();
   (function() { /* hyperdrive */
     var $glulevisDwarfPlanetHeader = $("#glulevisDwarfPlanetHeader");
+    var $progressTitle = $('#progress-title');
+    var $progressBar = $('#progress-bar');
     $hyperdrive.on('click', function() {
       if (quid >= 10) {
         quid -= 10;
         hyperdrive = 1;
         displayStats();
+        $progressTitle.removeClass('hidden');
+        $progressBar.removeClass('hidden');
         $glulevisDwarfPlanetHeader.removeClass('hidden');
         $glulevisDwarfPlanet.removeClass('hidden');
         $navigationSystem.removeClass('hidden');
