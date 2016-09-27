@@ -14,6 +14,8 @@ $(document).ready(function() {
   var $powerProgress = $('#powerProgress');
 
   var $upgradeMaxPower = $('#upgradeMaxPower');
+  var $powerRegen = $('#powerRegen');
+  var $hyperdriveRegen = $('#hyperdriveRegen');
 
   var $carbonaceous = $('#carbonaceous');
   var $silicaceous = $('#silicaceous');
@@ -37,7 +39,6 @@ $(document).ready(function() {
   var miningGlulevisBelt2 = false;
   var miningGlulevisDwarfPlanet = false;
   var miningAsharaObjects = false;
-  var planetAsharaUnlocked = false;
 
   var ship = {
     'quid': 500,
@@ -50,6 +51,9 @@ $(document).ready(function() {
       'iridium': 0
     },
     'miningLaser': 0,
+    'havePowerRegen': false,
+    'powerRegen': 1,
+    'hyperdriveRegen': 1,
     'hyperdrive': 0,
     'hyperdriveCurrent': 100,
     'currentLocation': 'glulevis'
@@ -60,6 +64,10 @@ $(document).ready(function() {
   var maxPower = ship['max power'];
   var hyperdrive = ship.hyperdrive;
   var hyperdriveCurrent = ship.hyperdriveCurrent;
+  var havePowerRegen = ship.havePowerRegen;
+  var powerRegen = ship.powerRegen;
+  var $buyPowerRegen = $('#buyPowerRegen');
+  var hyperdriveRegen = ship.hyperdriveRegen;
   var carbonaceous = ship.cargo.carbonaceous;
   var silicaceous = ship.cargo.silicaceous;
   var vesta = ship.cargo.vesta;
@@ -203,6 +211,7 @@ $(document).ready(function() {
   displayStats();
 
   // MAIN LOOP
+
   window.setInterval(function() {
     if (mining && power <= 0) {
       removeResources();
@@ -225,12 +234,25 @@ $(document).ready(function() {
       }
       power -= 1;
     }
-    if (hyperdriveCurrent !== 100) {
-      hyperdriveCurrent += 1;
+    else if (power != maxPower && havePowerRegen) { /* power regen */
+      if (power == (maxPower - 1)) {
+        power += 1;
+      } else {
+        power += powerRegen;
+      }
+    }
+
+    if (hyperdriveCurrent !== 100) { /* hyperdrive regen */
+      if (hyperdriveCurrent == 99) {
+        hyperdriveCurrent += 1;
+      } else {
+        hyperdriveCurrent += hyperdriveRegen;
+      }
     }
     displayStats();
   }, 1000);
 
+  var asharaFirstVisit = true;
   // PANELS
   (function() { /* hyperdrive */
     var $hyperdriveGlulevis = $("#hyperdriveGlulevis");
@@ -246,8 +268,11 @@ $(document).ready(function() {
         $ashara.removeClass('hidden');
         $glulevis.addClass('hidden');
         if (mining) stopMiningAll();
-        if (!planetAsharaUnlocked) {
-          planetAsharaUnlocked = true;
+        if (asharaFirstVisit) {
+          $hyperdriveRegen.removeClass('hidden');
+          $buyPowerRegen.removeClass('hidden');
+          toggleShowHeader(buy);
+          asharaFirstVisit = false;
         }
         displayStats();
       }
@@ -380,6 +405,37 @@ $(document).ready(function() {
       }
     });
   })();
+  (function() {
+    $buyPowerRegen.on('click', function() {
+      havePowerRegen = true;
+      $powerRegen.removeClass('hidden');
+      $(this).remove();
+      toggleShowHeaderAll()
+    });
+  })();
+  (function() { /* upgrade - power regen */
+    $powerRegen.on('click', function() {
+      if (quid >= 25) {
+        quid -= 25;
+        powerRegen = 2;
+        displayStats();
+        $(this).addClass('hidden');
+        toggleShowHeaderAll()
+      }
+    });
+  })();
+  (function() { /* upgrade - hyperdrive regen */
+    $hyperdriveRegen.on('click', function() {
+      if (quid >= 25) {
+        quid -= 25;
+        hyperdriveRegen = 2;
+        displayStats();
+        $(this).addClass('hidden');
+        toggleShowHeader(upgrade);
+      }
+    });
+  })();
+
   $sellCarbonaceous.on('click', function() {
     if (carbonaceous >= 25) {
       quid += Math.floor(carbonaceous / 25);
