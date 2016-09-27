@@ -14,7 +14,6 @@ $(document).ready(function() {
   var $powerProgress = $('#powerProgress');
 
   var $upgradeMaxPower = $('#upgradeMaxPower');
-  var $powerRegen = $('#powerRegen');
   var $hyperdriveRegen = $('#hyperdriveRegen');
 
   var $carbonaceous = $('#carbonaceous');
@@ -41,7 +40,7 @@ $(document).ready(function() {
   var miningAsharaObjects = false;
 
   var ship = {
-    'quid': 500,
+    'quid': 5,
     'max power': 100,
     'power': 100,
     'cargo': {
@@ -51,8 +50,6 @@ $(document).ready(function() {
       'iridium': 0
     },
     'miningLaser': 0,
-    'havePowerRegen': false,
-    'powerRegen': 1,
     'hyperdriveRegen': 1,
     'hyperdrive': 0,
     'hyperdriveCurrent': 100,
@@ -64,9 +61,6 @@ $(document).ready(function() {
   var maxPower = ship['max power'];
   var hyperdrive = ship.hyperdrive;
   var hyperdriveCurrent = ship.hyperdriveCurrent;
-  var havePowerRegen = ship.havePowerRegen;
-  var powerRegen = ship.powerRegen;
-  var $buyPowerRegen = $('#buyPowerRegen');
   var hyperdriveRegen = ship.hyperdriveRegen;
   var carbonaceous = ship.cargo.carbonaceous;
   var silicaceous = ship.cargo.silicaceous;
@@ -114,7 +108,7 @@ $(document).ready(function() {
     }
   }
   function mineIridium() {
-    var random = randomNum(40);
+    var random = randomNum(70);
     if (random == 0) {
       iridium += 1;
     }
@@ -234,13 +228,6 @@ $(document).ready(function() {
       }
       power -= 1;
     }
-    else if (power != maxPower && havePowerRegen) { /* power regen */
-      if (power == (maxPower - 1)) {
-        power += 1;
-      } else {
-        power += powerRegen;
-      }
-    }
 
     if (hyperdriveCurrent !== 100) { /* hyperdrive regen */
       if (hyperdriveCurrent == 99) {
@@ -270,7 +257,6 @@ $(document).ready(function() {
         if (mining) stopMiningAll();
         if (asharaFirstVisit) {
           $hyperdriveRegen.removeClass('hidden');
-          $buyPowerRegen.removeClass('hidden');
           toggleShowHeader(buy);
           asharaFirstVisit = false;
         }
@@ -405,25 +391,6 @@ $(document).ready(function() {
       }
     });
   })();
-  (function() {
-    $buyPowerRegen.on('click', function() {
-      havePowerRegen = true;
-      $powerRegen.removeClass('hidden');
-      $(this).remove();
-      toggleShowHeaderAll()
-    });
-  })();
-  (function() { /* upgrade - power regen */
-    $powerRegen.on('click', function() {
-      if (quid >= 25) {
-        quid -= 25;
-        powerRegen = 2;
-        displayStats();
-        $(this).addClass('hidden');
-        toggleShowHeaderAll()
-      }
-    });
-  })();
   (function() { /* upgrade - hyperdrive regen */
     $hyperdriveRegen.on('click', function() {
       if (quid >= 25) {
@@ -473,14 +440,9 @@ $(document).ready(function() {
 
 /* TO DO
 
-remove bold on bars created by js
-- show hyperdrive on purchase
 buy
   magnetic rack
 upgrade
   mining speed
 
-  header remove/show function
-    on button click
-    new planet
 */
